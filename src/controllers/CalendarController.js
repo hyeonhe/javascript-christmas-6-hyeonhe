@@ -1,8 +1,14 @@
 import { Console } from "@woowacourse/mission-utils";
 import InputView from "../views/InputView";
 import VisitDate from "../models/VisitDate";
+import OutputView from "../views/OutputView";
 
 class CalendarController {
+  init() {
+    OutputView.printGreeting();
+    this.visitDate();
+  }
+
   async visitDate() {
     let date = 0;
     while (true) {
