@@ -7,6 +7,7 @@ class CalendarController {
   init() {
     OutputView.printGreeting();
     this.visitDate();
+    OutputView.printTotalMenus();
   }
 
   async visitDate() {

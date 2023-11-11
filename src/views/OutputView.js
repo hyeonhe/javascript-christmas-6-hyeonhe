@@ -10,6 +10,16 @@ const OutputView = {
   printGreeting() {
     Console.print(OUTPUT_MESSAGE.greetingMessage);
   },
+
+  printTotalMenus() {
+    Console.print(OUTPUT_MESSAGE.appetizer);
+    Console.print("\n");
+    Console.print(OUTPUT_MESSAGE.main);
+    Console.print("\n");
+    Console.print(OUTPUT_MESSAGE.dessert);
+    Console.print("\n");
+    Console.print(OUTPUT_MESSAGE.beverage);
+  },
   // ...
 };
 
