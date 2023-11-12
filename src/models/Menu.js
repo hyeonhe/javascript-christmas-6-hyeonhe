@@ -122,5 +122,17 @@ class Menu {
 
     return orderLines.join("\n");
   }
+  calculateTotalAmount() {
+    let totalAmount = 0;
+
+    for (const category of Object.values(this.#menu)) {
+      totalAmount += category.reduce(
+        (accumulator, item) => accumulator + item.price * item.count,
+        0
+      );
+    }
+
+    return totalAmount;
+  }
 }
 export default Menu;
