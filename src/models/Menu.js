@@ -9,6 +9,7 @@ class Menu {
     const splitDashMenus = this.#splitDash(splitCommaMenus);
     this.#menu = this.#orderMenu(splitDashMenus);
     this.#calculateTotalOrderCount();
+    this.#orderOnlyBeverages();
   }
 
   #splitComma(menu) {
@@ -96,6 +97,21 @@ class Menu {
 
   #validateTotalOrderCount(totalCount) {
     if (totalCount > 20) {
+      throw new Error(ERROR_MESSAGE.invalidOrderError);
+    }
+  }
+
+  #orderOnlyBeverages() {
+    const categories = Object.keys(this.#menu);
+    const hasNonBeverageOrders = categories.some(
+      (category) => category !== "beverages" && this.#menu[category].length > 0
+    );
+
+    this.#validateBeverages(hasNonBeverageOrders);
+  }
+
+  #validateBeverages(count) {
+    if (!count) {
       throw new Error(ERROR_MESSAGE.invalidOrderError);
     }
   }
