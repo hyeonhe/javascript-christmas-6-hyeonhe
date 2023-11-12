@@ -5,6 +5,7 @@ const INPUT_MESSAGE = Object.freeze({
 
 const OUTPUT_MESSAGE = Object.freeze({
   greetingMessage: "안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.",
+  orderMenu: "<주문 메뉴>",
   appetizer:
     "<애피타이저>\n양송이수프(6,000), 타파스(5,500), 시저샐러드(8,000)",
   main: "<메인>\n티본스테이크(55,000), 바비큐립(54,000), 해산물파스타(35,000), 크리스마스파스타(25,000)",

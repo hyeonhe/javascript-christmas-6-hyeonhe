@@ -9,8 +9,10 @@ class CalendarController {
     OutputView.printGreeting();
     const date = await this.#visitDate();
     OutputView.printTotalMenus();
-    await this.#orderMenu();
+    const menu = await this.#orderMenu();
     OutputView.printPreview(date.getDate());
+    const order = menu.orderHistory();
+    OutputView.printMenu(order);
   }
 
   async #visitDate() {
@@ -34,7 +36,6 @@ class CalendarController {
       const inputMenu = await InputView.readMenu();
       try {
         menu = new Menu(inputMenu);
-        console.log(menu);
         break;
       } catch (error) {
         Console.print(error.message);

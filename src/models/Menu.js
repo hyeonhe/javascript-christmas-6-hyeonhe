@@ -115,5 +115,12 @@ class Menu {
       throw new Error(ERROR_MESSAGE.invalidOrderError);
     }
   }
+
+  orderHistory() {
+    const extractItemInfo = (item) => `${item.korean} ${item.count}개`;
+    const orderLines = Object.values(this.#menu).flat().map(extractItemInfo);
+
+    return orderLines.join("\n");
+  }
 }
 export default Menu;
