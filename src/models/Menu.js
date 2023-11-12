@@ -2,10 +2,13 @@ import { ERROR_MESSAGE } from "../constants/constants";
 import { MENU_ITEMS } from "../constants/menu";
 
 class Menu {
+  #menu;
+
   constructor(menu) {
     const splitCommaMenus = this.#splitComma(menu);
     const splitDashMenus = this.#splitDash(splitCommaMenus);
-    this.menu = this.#orderMenu(splitDashMenus);
+    this.#menu = this.#orderMenu(splitDashMenus);
+    this.#calculateTotalOrderCount();
   }
 
   #splitComma(menu) {
@@ -78,6 +81,23 @@ class Menu {
 
   #pushToOrderMenu(orderMenu, menu, val) {
     orderMenu[menu.type].push({ ...menu, count: val });
+  }
+
+  #calculateTotalOrderCount() {
+    let totalCount = 0;
+    for (const category of Object.values(this.#menu)) {
+      totalCount += category.reduce(
+        (accumulator, item) => accumulator + item.count,
+        0
+      );
+    }
+    this.#validateTotalOrderCount(totalCount);
+  }
+
+  #validateTotalOrderCount(totalCount) {
+    if (totalCount > 20) {
+      throw new Error(ERROR_MESSAGE.invalidOrderError);
+    }
   }
 }
 export default Menu;
