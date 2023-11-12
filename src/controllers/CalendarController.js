@@ -2,16 +2,18 @@ import { Console } from "@woowacourse/mission-utils";
 import InputView from "../views/InputView";
 import VisitDate from "../models/VisitDate";
 import OutputView from "../views/OutputView";
+import Menu from "../models/Menu";
 
 class CalendarController {
   async init() {
     OutputView.printGreeting();
-    await this.visitDate();
+    await this.#visitDate();
     OutputView.printTotalMenus();
+    await this.#orderMenu();
   }
 
-  async visitDate() {
-    let date = 0;
+  async #visitDate() {
+    let date;
     while (true) {
       const inputDate = await InputView.readDate();
       try {
@@ -23,6 +25,22 @@ class CalendarController {
     }
 
     return date;
+  }
+
+  async #orderMenu() {
+    let menu;
+    while (true) {
+      const inputMenu = await InputView.readMenu();
+      try {
+        menu = new Menu(inputMenu);
+        console.log(menu);
+        break;
+      } catch (error) {
+        Console.print(error.message);
+      }
+    }
+
+    return menu;
   }
 }
 

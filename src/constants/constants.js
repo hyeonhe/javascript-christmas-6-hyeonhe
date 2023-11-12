@@ -1,3 +1,8 @@
+const INPUT_MESSAGE = Object.freeze({
+  orderMessage:
+    "주문하실 메뉴를 메뉴와 개수를 알려 주세요. (e.g. 해산물파스타-2,레드와인-1,초코케이크-1)",
+});
+
 const OUTPUT_MESSAGE = Object.freeze({
   greetingMessage: "안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.",
   appetizer:
@@ -9,6 +14,7 @@ const OUTPUT_MESSAGE = Object.freeze({
 
 const ERROR_MESSAGE = Object.freeze({
   invalidDateError: "[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.",
+  invalidOrderError: "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.",
 });
 
-export { OUTPUT_MESSAGE, ERROR_MESSAGE };
+export { INPUT_MESSAGE, OUTPUT_MESSAGE, ERROR_MESSAGE };
