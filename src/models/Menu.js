@@ -53,9 +53,15 @@ class Menu {
   }
 
   #validateCount(count) {
+    this.#validateCountRange(count);
     this.#validateCountNaN(count);
   }
 
+  #validateCountRange(count) {
+    if (count < 1 || count > 20) {
+      throw new Error(ERROR_MESSAGE.invalidOrderError);
+    }
+  }
 
   #validateCountNaN(count) {
     if (Object.is(count, NaN)) {
