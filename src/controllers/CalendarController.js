@@ -7,9 +7,10 @@ import Menu from "../models/Menu";
 class CalendarController {
   async init() {
     OutputView.printGreeting();
-    await this.#visitDate();
+    const date = await this.#visitDate();
     OutputView.printTotalMenus();
     await this.#orderMenu();
+    OutputView.printPreview(date.getDate());
   }
 
   async #visitDate() {
