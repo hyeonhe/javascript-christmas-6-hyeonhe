@@ -4,9 +4,9 @@ import VisitDate from "../models/VisitDate";
 import OutputView from "../views/OutputView";
 
 class CalendarController {
-  init() {
+  async init() {
     OutputView.printGreeting();
-    this.visitDate();
+    await this.visitDate();
     OutputView.printTotalMenus();
   }
 
