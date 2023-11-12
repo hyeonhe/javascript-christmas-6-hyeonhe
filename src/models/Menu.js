@@ -46,10 +46,17 @@ class Menu {
       this.#validateCount(count);
 
       const menu = MENU_ITEMS.find((item) => item.korean === key);
+      this.#validateMenu(menu);
       this.#pushToOrderMenu(orderMenu, menu, count);
     }
 
     return orderMenu;
+  }
+
+  #validateMenu(menu) {
+    if (!menu) {
+      throw new Error(ERROR_MESSAGE.invalidOrderError);
+    }
   }
 
   #validateCount(count) {
