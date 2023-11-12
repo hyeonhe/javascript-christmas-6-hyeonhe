@@ -1,4 +1,4 @@
-import { INPUT_MESSAGE } from "../constants/constants";
+import { ERROR_MESSAGE } from "../constants/constants";
 class VisitDate {
   #date;
 
@@ -15,13 +15,13 @@ class VisitDate {
 
   #validate(date) {
     if (Object.is(date, NaN)) {
-      throw new Error(INPUT_MESSAGE.invalidDateError);
+      throw new Error(ERROR_MESSAGE.invalidDateError);
     }
   }
 
   #dateInRange(date) {
     if (date < 1 || date > 31) {
-      throw new Error(INPUT_MESSAGE.invalidDateError);
+      throw new Error(ERROR_MESSAGE.invalidDateError);
     }
   }
 
