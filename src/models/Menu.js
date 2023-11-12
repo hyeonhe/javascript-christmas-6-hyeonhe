@@ -53,7 +53,14 @@ class Menu {
   }
 
   #validateCount(count) {
-    if (Object.is(count, NaN)) throw new Error(ERROR_MESSAGE.invalidOrderError);
+    this.#validateCountNaN(count);
+  }
+
+
+  #validateCountNaN(count) {
+    if (Object.is(count, NaN)) {
+      throw new Error(ERROR_MESSAGE.invalidOrderError);
+    }
   }
 
   #pushToOrderMenu(orderMenu, menu, val) {
