@@ -13,6 +13,8 @@ class CalendarController {
     OutputView.printPreview(date.getDate());
     const order = menu.orderHistory();
     OutputView.printMenu(order);
+    const amount = menu.calculateTotalAmount();
+    OutputView.printTotalAmount(amount);
   }
 
   async #visitDate() {
