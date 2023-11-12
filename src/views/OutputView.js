@@ -30,6 +30,7 @@ const OutputView = {
 
   printTotalAmount(amount) {
     const money = numberWithCommas(amount);
+    Console.print(OUTPUT_MESSAGE.totalAmountBeforeDiscount);
     Console.print(`${money}원`);
   },
 };
