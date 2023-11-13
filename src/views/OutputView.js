@@ -71,7 +71,14 @@ const OutputView = {
   printSepecialEvent(amount) {
     if (amount > 0) {
       const money = numberWithCommas(amount);
-      Console.print(`특별 할인: -${money}`);
+      Console.print(`특별 할인: -${money}원`);
+    }
+  },
+
+  printGiftEvent(amount) {
+    if (amount > 0) {
+      const money = numberWithCommas(amount);
+      Console.print(`증정 이벤트: -${money}원`);
     }
   },
 };
