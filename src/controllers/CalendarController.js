@@ -21,24 +21,35 @@ class CalendarController {
     const event = new Event(visitDate, amount, menuCounts);
     const giftEventValue = event.giftEvent();
     OutputView.printGiftMenu(giftEventValue);
-    OutputView.printBenefit();
 
-    if (event.existEvents()) {
-      const christmasEvent = event.christmasEvent();
-      OutputView.printChristmasEvent(christmasEvent);
-      const weekdayEvent = event.weekdayEvent();
-      OutputView.printWeekdayEvent(weekdayEvent);
-      const weekendEvent = event.weekendEvent();
-      OutputView.printWeekendEvent(weekendEvent);
-      const specialEvent = event.specialEvent();
-      OutputView.printSepecialEvent(specialEvent);
-      OutputView.printGiftEvent(giftEventValue);
-    }
+    this.#printBenefit(event);
   }
 
   #printInitialInfo() {
     OutputView.printGreeting();
     OutputView.printTotalMenus();
+  }
+
+  #printBenefit(event) {
+    OutputView.printBenefit();
+    const existEvents = event.existEvents();
+    if (existEvents) {
+      this.#printEventValues(event);
+    }
+  }
+
+  #printEventValues(event) {
+    const christmasEventValue = event.christmasEvent();
+    const weekdayEventValue = event.weekdayEvent();
+    const weekendEventValue = event.weekendEvent();
+    const specialEventValue = event.specialEvent();
+    const giftEventValue = event.giftEvent();
+
+    OutputView.printChristmasEvent(christmasEventValue);
+    OutputView.printWeekdayEvent(weekdayEventValue);
+    OutputView.printWeekendEvent(weekendEventValue);
+    OutputView.printSepecialEvent(specialEventValue);
+    OutputView.printGiftEvent(giftEventValue);
   }
 
   async #visitDate() {
