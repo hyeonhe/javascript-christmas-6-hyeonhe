@@ -33,6 +33,11 @@ const OutputView = {
     Console.print(OUTPUT_MESSAGE.totalAmountBeforeDiscount);
     Console.print(`${money}원`);
   },
+
+  printGiftMenu(gift) {
+    Console.print(OUTPUT_MESSAGE.giftMenu);
+    Console.print(gift);
+  },
 };
 
 export default OutputView;

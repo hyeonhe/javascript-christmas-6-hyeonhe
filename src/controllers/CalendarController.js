@@ -3,6 +3,7 @@ import InputView from "../views/InputView";
 import VisitDate from "../models/VisitDate";
 import OutputView from "../views/OutputView";
 import Menu from "../models/Menu";
+import Event from "../models/Event";
 
 class CalendarController {
   async init() {
@@ -15,6 +16,9 @@ class CalendarController {
     OutputView.printMenu(order);
     const amount = menu.calculateTotalAmount();
     OutputView.printTotalAmount(amount);
+    const event = new Event(date, amount);
+    const gift = event.giftMenu();
+    OutputView.printGiftMenu(gift);
   }
 
   async #visitDate() {
