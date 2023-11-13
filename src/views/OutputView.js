@@ -50,7 +50,7 @@ const OutputView = {
     }
   },
 
-  printWeekDayEvent(amount) {
+  printWeekdayEvent(amount) {
     if (amount > 0) {
       const money = numberWithCommas(amount);
       Console.print(`평일 할인: -${money}원`);

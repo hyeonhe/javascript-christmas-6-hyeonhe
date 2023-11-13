@@ -41,7 +41,7 @@ class Event {
     return DISCOUNT_NONE;
   }
 
-  weekDayEvent() {
+  weekdayEvent() {
     if (!WEEKENDS.includes(this.#date)) {
       const count = this.#menuCounts.mainDish;
       return count * MENU_DISCOUNT_AMOUNT;

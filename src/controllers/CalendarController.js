@@ -26,8 +26,8 @@ class CalendarController {
     if (event.existEvents()) {
       const christmasEvent = event.christmasEvent();
       OutputView.printChristmasEvent(christmasEvent);
-      const weekDayEvent = event.weekDayEvent();
-      OutputView.printWeekDayEvent(weekDayEvent);
+      const weekdayEvent = event.weekdayEvent();
+      OutputView.printWeekdayEvent(weekdayEvent);
     }
   }
 
