@@ -11,15 +11,16 @@ class CalendarController {
 
     const date = await this.#visitDate();
     const menu = await this.#orderMenu();
-    OutputView.printPreview(date.getDate());
     const order = menu.orderHistory();
-    OutputView.printMenu(order);
     const amount = menu.calculateTotalAmount();
-    OutputView.printTotalAmount(amount);
-    const visitDate = date.getDate();
     const menuCounts = menu.getMenusCounts();
+    const visitDate = date.getDate();
     const event = new Event(visitDate, amount, menuCounts);
     const giftEventValue = event.giftEvent();
+
+    OutputView.printPreview(date.getDate());
+    OutputView.printMenu(order);
+    OutputView.printTotalAmount(amount);
     OutputView.printGiftMenu(giftEventValue);
 
     this.#printBenefit(event);
