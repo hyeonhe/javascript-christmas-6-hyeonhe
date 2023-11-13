@@ -91,6 +91,12 @@ const OutputView = {
     Console.print(OUTPUT_MESSAGE.totalDiscountAmout);
     Console.print(`${money}원`);
   },
+
+  printAfterDiscountAmount(amount) {
+    const money = numberWithCommas(amount);
+    Console.print(OUTPUT_MESSAGE.totalAmount);
+    Console.print(`${money}원`);
+  },
 };
 
 export default OutputView;
