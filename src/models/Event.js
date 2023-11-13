@@ -1,4 +1,5 @@
 import { WEEKENDS } from "../constants/date";
+import { CHRISTMAS_EVENT, DISCOUNT_NONE } from "../constants/constants";
 
 class Event {
   #date;
@@ -26,11 +27,13 @@ class Event {
   }
 
   christmasEvent() {
-    if (this.#date >= 1 && this.#date <= 25) {
-      return 1000 + (this.#date - 1) * 100;
+    const { startDate, endDate, discount, bonus, offset } = CHRISTMAS_EVENT;
+
+    if (this.#date >= startDate && this.#date <= endDate) {
+      return discount + (this.#date - offset) * bonus;
     }
 
-    return 0;
+    return DISCOUNT_NONE;
   }
 
   weekDayEvent() {
