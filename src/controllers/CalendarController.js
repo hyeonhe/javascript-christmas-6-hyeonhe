@@ -16,9 +16,16 @@ class CalendarController {
     OutputView.printMenu(order);
     const amount = menu.calculateTotalAmount();
     OutputView.printTotalAmount(amount);
-    const event = new Event(date, amount);
+    const visitDate = date.getDate();
+    const event = new Event(visitDate, amount);
     const gift = event.giftMenu();
     OutputView.printGiftMenu(gift);
+    OutputView.printBenefit();
+
+    if (event.existEvents()) {
+      const christmasEvent = event.christmasEvent();
+      OutputView.printChristmasEvent(christmasEvent);
+    }
   }
 
   async #visitDate() {

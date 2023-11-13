@@ -38,6 +38,17 @@ const OutputView = {
     Console.print(OUTPUT_MESSAGE.giftMenu);
     Console.print(gift);
   },
+
+  printBenefit() {
+    Console.print(OUTPUT_MESSAGE.discount);
+  },
+
+  printChristmasEvent(amount) {
+    if (amount > 0) {
+      const money = numberWithCommas(amount);
+      Console.print(`크리스마스 디데이 할인: -${money}원`);
+    }
+  },
 };
 
 export default OutputView;
