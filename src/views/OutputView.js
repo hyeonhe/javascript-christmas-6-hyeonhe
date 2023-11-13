@@ -49,6 +49,13 @@ const OutputView = {
       Console.print(`크리스마스 디데이 할인: -${money}원`);
     }
   },
+
+  printWeekDayEvent(amount) {
+    if (amount > 0) {
+      const money = numberWithCommas(amount);
+      Console.print(`평일 할인: -${money}원`);
+    }
+  },
 };
 
 export default OutputView;

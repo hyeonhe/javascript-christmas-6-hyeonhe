@@ -1,10 +1,14 @@
+import { WEEKENDS } from "../constants/date";
+
 class Event {
   #date;
   #amount;
+  #menuCounts;
 
-  constructor(date, amount) {
+  constructor(date, amount, menuCounts) {
     this.#date = date;
     this.#amount = amount;
+    this.#menuCounts = menuCounts;
   }
 
   existEvents() {
@@ -26,6 +30,14 @@ class Event {
       return 1000 + (this.#date - 1) * 100;
     }
 
+    return 0;
+  }
+
+  weekDayEvent() {
+    if (!WEEKENDS.includes(this.#date)) {
+      const count = this.#menuCounts.mainDish;
+      return count * 2023;
+    }
     return 0;
   }
 }

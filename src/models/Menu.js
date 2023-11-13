@@ -122,6 +122,15 @@ class Menu {
 
     return orderLines.join("\n");
   }
+
+  getMenusCounts() {
+    const { desserts, mainDishes } = this.#menu;
+    return {
+      dessert: desserts.length,
+      mainDish: mainDishes.length,
+    };
+  }
+
   calculateTotalAmount() {
     let totalAmount = 0;
 
