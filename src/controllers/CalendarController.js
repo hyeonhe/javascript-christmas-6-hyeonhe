@@ -19,8 +19,8 @@ class CalendarController {
     const visitDate = date.getDate();
     const menuCounts = menu.getMenusCounts();
     const event = new Event(visitDate, amount, menuCounts);
-    const gift = event.giftMenu();
-    OutputView.printGiftMenu(gift);
+    const giftEventValue = event.giftEvent();
+    OutputView.printGiftMenu(giftEventValue);
     OutputView.printBenefit();
 
     if (event.existEvents()) {

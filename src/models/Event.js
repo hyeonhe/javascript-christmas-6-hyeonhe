@@ -1,9 +1,11 @@
 import { STAR_DAYS, WEEKENDS } from "../constants/date";
 import {
+  CHAMPAGNE_PRICE,
   CHRISTMAS_EVENT,
   DISCOUNT_NONE,
   MENU_DISCOUNT_AMOUNT,
   MIN_VALUE_APPLY_EVENT,
+  MIN_VALUE_APPLY_GIFT,
   SPECIAL_AMOUNT,
 } from "../constants/constants";
 
@@ -25,11 +27,11 @@ class Event {
     return true;
   }
 
-  giftMenu() {
-    if (this.#amount >= 120000) {
-      return "샴페인 1개";
+  giftEvent() {
+    if (this.#amount >= MIN_VALUE_APPLY_GIFT) {
+      return CHAMPAGNE_PRICE;
     }
-    return "없음";
+    return DISCOUNT_NONE;
   }
 
   christmasEvent() {

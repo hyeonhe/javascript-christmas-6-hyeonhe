@@ -36,7 +36,11 @@ const OutputView = {
 
   printGiftMenu(gift) {
     Console.print(OUTPUT_MESSAGE.giftMenu);
-    Console.print(gift);
+    if (gift > 0) {
+      Console.print("샴페인 1개");
+    } else if (gift === 0) {
+      Console.print("없음");
+    }
   },
 
   printBenefit() {
