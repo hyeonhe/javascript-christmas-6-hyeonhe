@@ -7,9 +7,9 @@ import Event from "../models/Event";
 
 class CalendarController {
   async init() {
-    OutputView.printGreeting();
+    this.#printInitialInfo();
+
     const date = await this.#visitDate();
-    OutputView.printTotalMenus();
     const menu = await this.#orderMenu();
     OutputView.printPreview(date.getDate());
     const order = menu.orderHistory();
@@ -34,6 +34,11 @@ class CalendarController {
       OutputView.printSepecialEvent(specialEvent);
       OutputView.printGiftEvent(giftEventValue);
     }
+  }
+
+  #printInitialInfo() {
+    OutputView.printGreeting();
+    OutputView.printTotalMenus();
   }
 
   async #visitDate() {
