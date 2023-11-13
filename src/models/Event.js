@@ -48,6 +48,14 @@ class Event {
     }
     return DISCOUNT_NONE;
   }
+
+  weekendEvent() {
+    if (WEEKENDS.includes(this.#date)) {
+      const count = this.#menuCounts.dessert;
+      return count * MENU_DISCOUNT_AMOUNT;
+    }
+    return DISCOUNT_NONE;
+  }
 }
 
 export default Event;
