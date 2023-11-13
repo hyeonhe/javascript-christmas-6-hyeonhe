@@ -66,6 +66,19 @@ class Event {
     }
     return DISCOUNT_NONE;
   }
+  totalDiscountAmount() {
+    const christmasEventValue = this.christmasEvent();
+    const weekdayEventValue = this.weekdayEvent();
+    const weekendEventValue = this.weekendEvent();
+    const specialEventValue = this.specialEvent();
+
+    return (
+      christmasEventValue +
+      weekdayEventValue +
+      weekendEventValue +
+      specialEventValue
+    );
+  }
 }
 
 export default Event;
