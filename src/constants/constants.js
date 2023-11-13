@@ -32,6 +32,7 @@ const CHRISTMAS_EVENT = Object.freeze({
   offset: 1,
 });
 
+const MIN_VALUE_APPLY_EVENT = 10000;
 const DISCOUNT_NONE = 0;
 const MENU_DISCOUNT_AMOUNT = 2023;
 
@@ -42,4 +43,5 @@ export {
   CHRISTMAS_EVENT,
   DISCOUNT_NONE,
   MENU_DISCOUNT_AMOUNT,
+  MIN_VALUE_APPLY_EVENT,
 };

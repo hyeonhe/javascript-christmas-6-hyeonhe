@@ -3,6 +3,7 @@ import {
   CHRISTMAS_EVENT,
   DISCOUNT_NONE,
   MENU_DISCOUNT_AMOUNT,
+  MIN_VALUE_APPLY_EVENT,
 } from "../constants/constants";
 
 class Event {
@@ -17,7 +18,7 @@ class Event {
   }
 
   existEvents() {
-    if (this.#amount < 10000) {
+    if (this.#amount < MIN_VALUE_APPLY_EVENT) {
       return false;
     }
     return true;
