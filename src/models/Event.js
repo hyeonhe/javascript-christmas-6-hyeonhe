@@ -66,6 +66,13 @@ class Event {
     }
     return DISCOUNT_NONE;
   }
+
+  totalBenefitAmount() {
+    const giftEventValue = this.giftEvent();
+    console.log(giftEventValue, this.totalDiscountAmount());
+    return this.totalDiscountAmount() + giftEventValue;
+  }
+
   totalDiscountAmount() {
     const christmasEventValue = this.christmasEvent();
     const weekdayEventValue = this.weekdayEvent();

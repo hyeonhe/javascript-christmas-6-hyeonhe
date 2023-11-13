@@ -85,6 +85,12 @@ const OutputView = {
   printNoEvent() {
     Console.print("없음");
   },
+
+  printTotalBenefitAmount(amount) {
+    const money = numberWithCommas(-amount);
+    Console.print(OUTPUT_MESSAGE.totalDiscountAmout);
+    Console.print(`${money}원`);
+  },
 };
 
 export default OutputView;
