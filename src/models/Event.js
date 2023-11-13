@@ -1,5 +1,9 @@
 import { WEEKENDS } from "../constants/date";
-import { CHRISTMAS_EVENT, DISCOUNT_NONE } from "../constants/constants";
+import {
+  CHRISTMAS_EVENT,
+  DISCOUNT_NONE,
+  MENU_DISCOUNT_AMOUNT,
+} from "../constants/constants";
 
 class Event {
   #date;
@@ -39,9 +43,9 @@ class Event {
   weekDayEvent() {
     if (!WEEKENDS.includes(this.#date)) {
       const count = this.#menuCounts.mainDish;
-      return count * 2023;
+      return count * MENU_DISCOUNT_AMOUNT;
     }
-    return 0;
+    return DISCOUNT_NONE;
   }
 }
 

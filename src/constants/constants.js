@@ -33,6 +33,7 @@ const CHRISTMAS_EVENT = Object.freeze({
 });
 
 const DISCOUNT_NONE = 0;
+const MENU_DISCOUNT_AMOUNT = 2023;
 
 export {
   INPUT_MESSAGE,
@@ -40,4 +41,5 @@ export {
   ERROR_MESSAGE,
   CHRISTMAS_EVENT,
   DISCOUNT_NONE,
+  MENU_DISCOUNT_AMOUNT,
 };
