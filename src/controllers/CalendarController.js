@@ -30,6 +30,8 @@ class CalendarController {
       OutputView.printWeekdayEvent(weekdayEvent);
       const weekendEvent = event.weekendEvent();
       OutputView.printWeekendEvent(weekendEvent);
+      const specialEvent = event.specialEvent();
+      OutputView.printSepecialEvent(specialEvent);
     }
   }
 

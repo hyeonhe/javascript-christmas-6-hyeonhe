@@ -63,6 +63,13 @@ const OutputView = {
       Console.print(`주말 할인: -${money}원`);
     }
   },
+
+  printSepecialEvent(amount) {
+    if (amount > 0) {
+      const money = numberWithCommas(amount);
+      Console.print(`특별 할인: -${money}`);
+    }
+  },
 };
 
 export default OutputView;

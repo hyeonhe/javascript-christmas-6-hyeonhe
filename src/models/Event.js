@@ -1,9 +1,10 @@
-import { WEEKENDS } from "../constants/date";
+import { STAR_DAYS, WEEKENDS } from "../constants/date";
 import {
   CHRISTMAS_EVENT,
   DISCOUNT_NONE,
   MENU_DISCOUNT_AMOUNT,
   MIN_VALUE_APPLY_EVENT,
+  SPECIAL_AMOUNT,
 } from "../constants/constants";
 
 class Event {
@@ -53,6 +54,13 @@ class Event {
     if (WEEKENDS.includes(this.#date)) {
       const count = this.#menuCounts.dessert;
       return count * MENU_DISCOUNT_AMOUNT;
+    }
+    return DISCOUNT_NONE;
+  }
+
+  specialEvent() {
+    if (STAR_DAYS.includes(this.#date)) {
+      return SPECIAL_AMOUNT;
     }
     return DISCOUNT_NONE;
   }
