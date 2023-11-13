@@ -81,6 +81,10 @@ const OutputView = {
       Console.print(`증정 이벤트: -${money}원`);
     }
   },
+
+  printNoEvent() {
+    Console.print("없음");
+  },
 };
 
 export default OutputView;

@@ -37,6 +37,9 @@ class CalendarController {
     if (existEvents) {
       this.#printEventValues(event);
     }
+    if (!existEvents) {
+      OutputView.printNoEvent();
+    }
   }
 
   #printEventValues(event) {
