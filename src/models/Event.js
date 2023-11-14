@@ -76,7 +76,6 @@ class Event {
 
   totalBenefitAmount() {
     const giftEventValue = this.giftEvent();
-    console.log(giftEventValue, this.totalDiscountAmount());
     return this.totalDiscountAmount() + giftEventValue;
   }
 
