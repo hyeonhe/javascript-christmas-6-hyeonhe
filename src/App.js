@@ -1,4 +1,4 @@
-import CalendarController from "./controllers/calendarController";
+import CalendarController from "./controllers/CalendarController";
 
 class App {
   async run() {
