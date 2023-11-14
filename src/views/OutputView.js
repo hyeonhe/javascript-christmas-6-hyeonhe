@@ -97,6 +97,11 @@ const OutputView = {
     Console.print(OUTPUT_MESSAGE.totalAmount);
     Console.print(`${money}원`);
   },
+
+  printEventBadge(badge) {
+    Console.print(OUTPUT_MESSAGE.badge);
+    Console.print(badge);
+  },
 };
 
 export default OutputView;

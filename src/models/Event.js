@@ -6,7 +6,14 @@ import {
   MENU_DISCOUNT_AMOUNT,
   MIN_VALUE_APPLY_EVENT,
   MIN_VALUE_APPLY_GIFT,
+  NO_EVENT,
+  SANTA,
+  SANTA_BADGE_AMOUNT,
   SPECIAL_AMOUNT,
+  STAR,
+  STAR_BADGE_AMOUNT,
+  TREE,
+  TREE_BADGE_AMOUNT,
 } from "../constants/constants";
 
 class Event {
@@ -85,6 +92,18 @@ class Event {
       weekendEventValue +
       specialEventValue
     );
+  }
+
+  eventBadge() {
+    const totalBenefitAmount = this.totalBenefitAmount();
+    if (totalBenefitAmount >= SANTA_BADGE_AMOUNT) {
+      return SANTA;
+    } else if (totalBenefitAmount >= TREE_BADGE_AMOUNT) {
+      return TREE;
+    } else if (totalBenefitAmount >= STAR_BADGE_AMOUNT) {
+      return STAR;
+    }
+    return NO_EVENT;
   }
 }
 

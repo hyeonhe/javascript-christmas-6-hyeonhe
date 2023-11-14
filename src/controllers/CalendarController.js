@@ -20,6 +20,7 @@ class CalendarController {
     const totalBenefitAmount = event.totalBenefitAmount();
     const totalDiscountAmount = event.totalDiscountAmount();
     const afterDiscountAmount = amount - totalDiscountAmount;
+    const eventBadge = event.eventBadge();
 
     OutputView.printPreview(date.getDate());
     OutputView.printMenu(order);
@@ -29,6 +30,7 @@ class CalendarController {
     this.#printBenefit(event);
     OutputView.printTotalBenefitAmount(totalBenefitAmount);
     OutputView.printAfterDiscountAmount(afterDiscountAmount);
+    OutputView.printEventBadge(eventBadge);
   }
 
   #printInitialInfo() {
