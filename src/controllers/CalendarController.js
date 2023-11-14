@@ -8,34 +8,45 @@ import Event from "../models/Event";
 class CalendarController {
   async init() {
     this.#printInitialInfo();
-
     const date = await this.#visitDate();
     const menu = await this.#orderMenu();
-    const order = menu.orderHistory();
-    const amount = menu.calculateTotalAmount();
-    const menuCounts = menu.getMenusCounts();
-    const visitDate = date.getDate();
-    const event = new Event(visitDate, amount, menuCounts);
-    const giftEventValue = event.giftEvent();
-    const totalBenefitAmount = event.totalBenefitAmount();
-    const totalDiscountAmount = event.totalDiscountAmount();
-    const afterDiscountAmount = amount - totalDiscountAmount;
-    const eventBadge = event.eventBadge();
+    const event = this.#getEvent(date, menu);
 
-    OutputView.printPreview(date.getDate());
-    OutputView.printMenu(order);
-    OutputView.printTotalAmount(amount);
-    OutputView.printGiftMenu(giftEventValue);
+    this.#printPreview(date);
+    this.#printMenu(menu);
+    this.#printTotalAmount(menu);
 
+    this.#printGiftMenu(event);
     this.#printBenefit(event);
-    OutputView.printTotalBenefitAmount(totalBenefitAmount);
-    OutputView.printAfterDiscountAmount(afterDiscountAmount);
-    OutputView.printEventBadge(eventBadge);
+    this.#printTotalBenefitAmount(event);
+    this.#printAfterDiscountAmount(menu, event);
+
+    this.#printEventBadge(event);
   }
 
   #printInitialInfo() {
     OutputView.printGreeting();
     OutputView.printTotalMenus();
+  }
+
+  #printPreview(date) {
+    const visitDate = date.getDate();
+    OutputView.printPreview(visitDate);
+  }
+
+  #printMenu(menu) {
+    const order = menu.orderHistory();
+    OutputView.printMenu(order);
+  }
+
+  #printTotalAmount(menu) {
+    const amount = menu.calculateTotalAmount();
+    OutputView.printTotalAmount(amount);
+  }
+
+  #printGiftMenu(event) {
+    const giftEventValue = event.giftEvent();
+    OutputView.printGiftMenu(giftEventValue);
   }
 
   #printBenefit(event) {
@@ -61,6 +72,23 @@ class CalendarController {
     OutputView.printWeekendEvent(weekendEventValue);
     OutputView.printSepecialEvent(specialEventValue);
     OutputView.printGiftEvent(giftEventValue);
+  }
+
+  #printTotalBenefitAmount(event) {
+    const totalBenefitAmount = event.totalBenefitAmount();
+    OutputView.printTotalBenefitAmount(totalBenefitAmount);
+  }
+
+  #printAfterDiscountAmount(menu, event) {
+    const amount = menu.calculateTotalAmount();
+    const totalDiscountAmount = event.totalDiscountAmount();
+    const afterDiscountAmount = amount - totalDiscountAmount;
+    OutputView.printAfterDiscountAmount(afterDiscountAmount);
+  }
+
+  #printEventBadge(event) {
+    const eventBadge = event.eventBadge();
+    OutputView.printEventBadge(eventBadge);
   }
 
   async #visitDate() {
@@ -91,6 +119,14 @@ class CalendarController {
     }
 
     return menu;
+  }
+
+  #getEvent(date, menu) {
+    const visitDate = date.getDate();
+    const amount = menu.calculateTotalAmount();
+    const menuCounts = menu.getMenusCounts();
+
+    return new Event(visitDate, amount, menuCounts);
   }
 }
 
