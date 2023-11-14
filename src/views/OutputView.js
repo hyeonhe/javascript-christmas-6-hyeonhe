@@ -1,5 +1,5 @@
 import { Console } from "@woowacourse/mission-utils";
-import { OUTPUT_MESSAGE } from "../constants/constants";
+import { NO_EVENT, OUTPUT_MESSAGE } from "../constants/constants";
 import numberWithCommas from "../utils/numberWithCommas";
 
 const OutputView = {
@@ -39,7 +39,7 @@ const OutputView = {
     if (gift > 0) {
       Console.print("샴페인 1개");
     } else if (gift === 0) {
-      Console.print("없음");
+      Console.print(NO_EVENT);
     }
   },
 
@@ -83,7 +83,7 @@ const OutputView = {
   },
 
   printNoEvent() {
-    Console.print("없음");
+    Console.print(NO_EVENT);
   },
 
   printTotalBenefitAmount(amount) {
