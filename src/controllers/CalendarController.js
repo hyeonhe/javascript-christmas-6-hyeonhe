@@ -55,25 +55,27 @@ class CalendarController {
     OutputView.printBenefit();
     const existEvents = event.existEvents();
     if (existEvents) {
-      this.#printEventValues(event);
+      return this.#printEventValues(event);
     }
-    if (!existEvents) {
-      OutputView.printNoEvent();
-    }
+
+    return OutputView.printNoEvent();
   }
 
   #printEventValues(event) {
-    const eventValues = {
+    const eventValues = this.#getEventValues(event);
+    Object.keys(eventValues).forEach((item) => {
+      OutputView.printEventDiscount(EVENTS[item], eventValues[item]);
+    });
+  }
+
+  #getEventValues(event) {
+    return {
       Christmas: event.christmasEvent(),
       Weekday: event.weekdayEvent(),
       Weekend: event.weekendEvent(),
       Special: event.specialEvent(),
       Gift: event.giftEvent(),
     };
-
-    Object.keys(eventValues).forEach((item) => {
-      OutputView.printEventDiscount(EVENTS[item], eventValues[item]);
-    });
   }
 
   #printTotalBenefitAmount(event) {
@@ -82,10 +84,14 @@ class CalendarController {
   }
 
   #printAfterDiscountAmount(menu, event) {
+    const afterDiscountAmount = this.#calculateAfterDiscountAmount(menu, event);
+    OutputView.printAfterDiscountAmount(afterDiscountAmount);
+  }
+
+  #calculateAfterDiscountAmount(menu, event) {
     const amount = menu.calculateTotalAmount();
     const totalDiscountAmount = event.totalDiscountAmount();
-    const afterDiscountAmount = amount - totalDiscountAmount;
-    OutputView.printAfterDiscountAmount(afterDiscountAmount);
+    return amount - totalDiscountAmount;
   }
 
   #printEventBadge(event) {
