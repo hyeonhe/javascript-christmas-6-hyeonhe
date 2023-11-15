@@ -32,37 +32,42 @@ class Event {
   }
 
   christmasEvent() {
-    const { startDate, endDate, discount, bonus, offset } =
-      CHRISTMAS_EVENT_VALUE;
-
+    const { startDate, endDate } = CHRISTMAS_EVENT_VALUE;
     if (this.#date >= startDate && this.#date <= endDate) {
-      return discount + (this.#date - offset) * bonus;
+      return this.#chirstmasEventValue();
     }
 
     return EVENT_CONSTANTS.discountNone;
+  }
+
+  #chirstmasEventValue() {
+    const { discount, bonus, offset } = CHRISTMAS_EVENT_VALUE;
+    return discount + (this.#date - offset) * bonus;
   }
 
   weekdayEvent() {
-    if (!WEEKENDS.includes(this.#date)) {
-      const count = this.#menuCounts.mainDish;
-      return count * EVENT_CONSTANTS.menuDiscountAmount;
+    if (WEEKENDS.includes(this.#date)) {
+      return EVENT_CONSTANTS.discountNone;
     }
-    return EVENT_CONSTANTS.discountNone;
+
+    const count = this.#menuCounts.mainDish;
+    return count * EVENT_CONSTANTS.menuDiscountAmount;
   }
 
   weekendEvent() {
-    if (WEEKENDS.includes(this.#date)) {
-      const count = this.#menuCounts.dessert;
-      return count * EVENT_CONSTANTS.menuDiscountAmount;
+    if (!WEEKENDS.includes(this.#date)) {
+      return EVENT_CONSTANTS.discountNone;
     }
 
-    return EVENT_CONSTANTS.discountNone;
+    const count = this.#menuCounts.dessert;
+    return count * EVENT_CONSTANTS.menuDiscountAmount;
   }
 
   specialEvent() {
     if (STAR_DAYS.includes(this.#date)) {
       return EVENT_CONSTANTS.specialAmount;
     }
+
     return EVENT_CONSTANTS.discountNone;
   }
 
@@ -97,6 +102,7 @@ class Event {
       starBadgeAmount,
     } = BADGE_CONSTANTS;
     const totalBenefitAmount = this.totalBenefitAmount();
+
     if (totalBenefitAmount >= santaBadgeAmount) return santa;
     else if (totalBenefitAmount >= treeBadgeAmount) return tree;
     else if (totalBenefitAmount >= starBadgeAmount) return star;
