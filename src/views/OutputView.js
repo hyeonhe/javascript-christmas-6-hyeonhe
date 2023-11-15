@@ -47,38 +47,10 @@ const OutputView = {
     Console.print(OUTPUT_MESSAGE.discount);
   },
 
-  printChristmasEvent(amount) {
+  printEventDiscount(eventName, amount) {
     if (amount > 0) {
       const money = numberWithCommas(amount);
-      Console.print(`크리스마스 디데이 할인: -${money}원`);
-    }
-  },
-
-  printWeekdayEvent(amount) {
-    if (amount > 0) {
-      const money = numberWithCommas(amount);
-      Console.print(`평일 할인: -${money}원`);
-    }
-  },
-
-  printWeekendEvent(amount) {
-    if (amount > 0) {
-      const money = numberWithCommas(amount);
-      Console.print(`주말 할인: -${money}원`);
-    }
-  },
-
-  printSepecialEvent(amount) {
-    if (amount > 0) {
-      const money = numberWithCommas(amount);
-      Console.print(`특별 할인: -${money}원`);
-    }
-  },
-
-  printGiftEvent(amount) {
-    if (amount > 0) {
-      const money = numberWithCommas(amount);
-      Console.print(`증정 이벤트: -${money}원`);
+      Console.print(`${eventName}: -${money}원`);
     }
   },
 

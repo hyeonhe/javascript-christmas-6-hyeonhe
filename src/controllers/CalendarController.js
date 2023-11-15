@@ -4,6 +4,7 @@ import VisitDate from "../models/VisitDate";
 import OutputView from "../views/OutputView";
 import Menu from "../models/Menu";
 import Event from "../models/Event";
+import { EVENTS } from "../constants/event";
 
 class CalendarController {
   async init() {
@@ -61,17 +62,17 @@ class CalendarController {
   }
 
   #printEventValues(event) {
-    const christmasEventValue = event.christmasEvent();
-    const weekdayEventValue = event.weekdayEvent();
-    const weekendEventValue = event.weekendEvent();
-    const specialEventValue = event.specialEvent();
-    const giftEventValue = event.giftEvent();
+    const eventValues = {
+      Christmas: event.christmasEvent(),
+      Weekday: event.weekdayEvent(),
+      Weekend: event.weekendEvent(),
+      Special: event.specialEvent(),
+      Gift: event.giftEvent(),
+    };
 
-    OutputView.printChristmasEvent(christmasEventValue);
-    OutputView.printWeekdayEvent(weekdayEventValue);
-    OutputView.printWeekendEvent(weekendEventValue);
-    OutputView.printSepecialEvent(specialEventValue);
-    OutputView.printGiftEvent(giftEventValue);
+    Object.keys(eventValues).forEach((item) => {
+      OutputView.printEventDiscount(EVENTS[item], eventValues[item]);
+    });
   }
 
   #printTotalBenefitAmount(event) {
