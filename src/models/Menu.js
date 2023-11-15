@@ -1,5 +1,11 @@
 import { ERROR_MESSAGE } from "../constants/constants";
-import { MENU_ITEMS } from "../constants/menu";
+import {
+  BEVERAGES,
+  ITEM_INFO,
+  MAX_COUNT,
+  MENU_ITEMS,
+  MIN_COUNT,
+} from "../constants/menu";
 
 class Menu {
   #menu;
@@ -14,10 +20,15 @@ class Menu {
 
   #splitComma(menu) {
     const menus = menu.split(",");
+    this.#validateMenuArray(menus);
+
+    return menus;
+  }
+
+  #validateMenuArray(menus) {
     if (menus.length === 0) {
       throw new Error(ERROR_MESSAGE.invalidOrderError);
     }
-    return menus;
   }
 
   #splitDash(menu) {
@@ -46,15 +57,26 @@ class Menu {
     };
 
     for (const [key, val] of Object.entries(menus)) {
-      const count = Number(val);
-      this.#validateCount(count);
-
-      const menu = MENU_ITEMS.find((item) => item.korean === key);
-      this.#validateMenu(menu);
-      this.#pushToOrderMenu(orderMenu, menu, count);
+      const menuCount = this.#getMenuCount(val);
+      const menu = this.#findMenuByKey(key);
+      this.#pushToOrderMenu(orderMenu, menu, menuCount);
     }
 
     return orderMenu;
+  }
+
+  #getMenuCount(count) {
+    const menuCount = Number(count);
+    this.#validateCount(menuCount);
+
+    return menuCount;
+  }
+
+  #findMenuByKey(key) {
+    const menu = MENU_ITEMS.find((item) => item.korean === key);
+    this.#validateMenu(menu);
+
+    return menu;
   }
 
   #validateMenu(menu) {
@@ -64,18 +86,18 @@ class Menu {
   }
 
   #validateCount(count) {
-    this.#validateCountRange(count);
     this.#validateCountNaN(count);
-  }
-
-  #validateCountRange(count) {
-    if (count < 1 || count > 20) {
-      throw new Error(ERROR_MESSAGE.invalidOrderError);
-    }
+    this.#validateCountRange(count);
   }
 
   #validateCountNaN(count) {
     if (Object.is(count, NaN)) {
+      throw new Error(ERROR_MESSAGE.invalidOrderError);
+    }
+  }
+
+  #validateCountRange(count) {
+    if (count < MIN_COUNT || count > MAX_COUNT) {
       throw new Error(ERROR_MESSAGE.invalidOrderError);
     }
   }
@@ -85,29 +107,39 @@ class Menu {
   }
 
   #calculateTotalOrderCount() {
-    let totalCount = 0;
+    const totalOrderCount = this.#getTotalOrderCount();
+    this.#validateTotalOrderCount(totalOrderCount);
+  }
+
+  #getTotalOrderCount() {
+    let totalOrderCount = 0;
     for (const category of Object.values(this.#menu)) {
-      totalCount += category.reduce(
+      totalOrderCount += category.reduce(
         (accumulator, item) => accumulator + item.count,
         0
       );
     }
-    this.#validateTotalOrderCount(totalCount);
+    return totalOrderCount;
   }
 
   #validateTotalOrderCount(totalCount) {
-    if (totalCount > 20) {
+    if (totalCount > MAX_COUNT) {
       throw new Error(ERROR_MESSAGE.invalidOrderError);
     }
   }
 
   #orderOnlyBeverages() {
+    const hasNonBeverageOrders = this.#checkNonBeverageOrders();
+    this.#validateBeverages(hasNonBeverageOrders);
+  }
+
+  #checkNonBeverageOrders() {
     const categories = Object.keys(this.#menu);
     const hasNonBeverageOrders = categories.some(
-      (category) => category !== "beverages" && this.#menu[category].length > 0
+      (category) => category !== BEVERAGES && this.#menu[category].length > 0
     );
 
-    this.#validateBeverages(hasNonBeverageOrders);
+    return hasNonBeverageOrders;
   }
 
   #validateBeverages(count) {
@@ -117,10 +149,12 @@ class Menu {
   }
 
   orderHistory() {
-    const extractItemInfo = (item) => `${item.korean} ${item.count}개`;
-    const orderLines = Object.values(this.#menu).flat().map(extractItemInfo);
+    const orderLines = Object.values(this.#menu)
+      .flat()
+      .map(ITEM_INFO)
+      .join("\n");
 
-    return orderLines.join("\n");
+    return orderLines;
   }
 
   getMenusCounts() {
@@ -133,7 +167,6 @@ class Menu {
 
   calculateTotalAmount() {
     let totalAmount = 0;
-
     for (const category of Object.values(this.#menu)) {
       totalAmount += category.reduce(
         (accumulator, item) => accumulator + item.price * item.count,
@@ -144,4 +177,5 @@ class Menu {
     return totalAmount;
   }
 }
+
 export default Menu;
