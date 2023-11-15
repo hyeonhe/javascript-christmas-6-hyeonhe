@@ -28,6 +28,7 @@ class CalendarController {
   #printInitialInfo() {
     OutputView.printGreeting();
     OutputView.printTotalMenus();
+    OutputView.printEventNotices();
   }
 
   #printPreview(date) {

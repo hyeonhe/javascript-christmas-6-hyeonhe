@@ -20,6 +20,9 @@ const OutputView = {
     Console.print(OUTPUT_MESSAGE.dessert);
     Console.print("\n");
     Console.print(OUTPUT_MESSAGE.beverage);
+
+  printEventNotices() {
+    Console.print(OUTPUT_MESSAGE.eventNotices);
   },
 
   printPreview(date) {
