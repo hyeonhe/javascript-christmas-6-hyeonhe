@@ -75,8 +75,10 @@ class Event {
   }
 
   totalBenefitAmount() {
+    const totalDiscountAmount = this.totalDiscountAmount();
     const giftEventValue = this.giftEvent();
-    return this.totalDiscountAmount() + giftEventValue;
+
+    return totalDiscountAmount + giftEventValue;
   }
 
   totalDiscountAmount() {
@@ -95,13 +97,9 @@ class Event {
 
   eventBadge() {
     const totalBenefitAmount = this.totalBenefitAmount();
-    if (totalBenefitAmount >= SANTA_BADGE_AMOUNT) {
-      return SANTA;
-    } else if (totalBenefitAmount >= TREE_BADGE_AMOUNT) {
-      return TREE;
-    } else if (totalBenefitAmount >= STAR_BADGE_AMOUNT) {
-      return STAR;
-    }
+    if (totalBenefitAmount >= SANTA_BADGE_AMOUNT) return SANTA;
+    else if (totalBenefitAmount >= TREE_BADGE_AMOUNT) return TREE;
+    else if (totalBenefitAmount >= STAR_BADGE_AMOUNT) return STAR;
     return NO_EVENT;
   }
 }
