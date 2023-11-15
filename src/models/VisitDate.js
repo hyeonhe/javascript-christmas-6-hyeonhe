@@ -1,4 +1,5 @@
 import { ERROR_MESSAGE } from "../constants/constants";
+import { END_DATE, START_DATE } from "../constants/date";
 class VisitDate {
   #date;
 
@@ -20,7 +21,7 @@ class VisitDate {
   }
 
   #dateInRange(date) {
-    if (date < 1 || date > 31) {
+    if (date < START_DATE || date > END_DATE) {
       throw new Error(ERROR_MESSAGE.invalidDateError);
     }
   }
