@@ -1,11 +1,5 @@
-import { ERROR_MESSAGE } from "../constants/constants";
-import {
-  BEVERAGES,
-  ITEM_INFO,
-  MAX_COUNT,
-  MENU_ITEMS,
-  MIN_COUNT,
-} from "../constants/menu";
+import { ERROR_MESSAGE, OUTPUT_MESSAGE } from "../constants/constants";
+import { BEVERAGES, MAX_COUNT, MENU_ITEMS, MIN_COUNT } from "../constants/menu";
 
 class Menu {
   #menu;
@@ -151,7 +145,7 @@ class Menu {
   orderHistory() {
     const orderLines = Object.values(this.#menu)
       .flat()
-      .map(ITEM_INFO)
+      .map(OUTPUT_MESSAGE.itemInfo)
       .join("\n");
 
     return orderLines;

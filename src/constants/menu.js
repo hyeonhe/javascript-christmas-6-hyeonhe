@@ -75,7 +75,6 @@ const MENU_ITEMS = Object.freeze([
 
 const MIN_COUNT = 1;
 const MAX_COUNT = 20;
-const ITEM_INFO = (item) => `${item.korean} ${item.count}개`;
 const BEVERAGES = "beverages";
 
-export { MENU_ITEMS, MIN_COUNT, MAX_COUNT, ITEM_INFO, BEVERAGES };
+export { MENU_ITEMS, MIN_COUNT, MAX_COUNT, BEVERAGES };

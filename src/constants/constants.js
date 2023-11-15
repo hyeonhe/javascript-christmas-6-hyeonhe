@@ -26,6 +26,7 @@ const OUTPUT_MESSAGE = Object.freeze({
   discountValue: (money) => `${money}원`,
   eventDiscount: (eventName, money) => `${eventName}: -${money}원`,
   champagne: "샴페인 1개",
+  itemInfo: (item) => `${item.korean} ${item.count}개`,
 });
 
 const ERROR_MESSAGE = Object.freeze({
