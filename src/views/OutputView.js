@@ -20,27 +20,27 @@ const OutputView = {
     Console.print(OUTPUT_MESSAGE.dessert);
     Console.print("\n");
     Console.print(OUTPUT_MESSAGE.beverage);
+    Console.print("\n");
+  },
 
   printEventNotices() {
     Console.print(OUTPUT_MESSAGE.eventNotices);
   },
 
   printPreview(date) {
-    Console.print(
-      `12월 ${date}일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!`
-    );
+    Console.print(OUTPUT_MESSAGE.benefitPreview(date));
   },
 
   printTotalAmount(amount) {
     const money = numberWithCommas(amount);
     Console.print(OUTPUT_MESSAGE.totalAmountBeforeDiscount);
-    Console.print(`${money}원`);
+    Console.print(OUTPUT_MESSAGE.discountValue(money));
   },
 
   printGiftMenu(gift) {
     Console.print(OUTPUT_MESSAGE.giftMenu);
     if (gift > 0) {
-      Console.print("샴페인 1개");
+      Console.print(OUTPUT_MESSAGE.champagne);
     } else if (gift === 0) {
       Console.print(NO_EVENT);
     }
@@ -53,7 +53,7 @@ const OutputView = {
   printEventDiscount(eventName, amount) {
     if (amount > 0) {
       const money = numberWithCommas(amount);
-      Console.print(`${eventName}: -${money}원`);
+      Console.print(OUTPUT_MESSAGE.eventDiscount(eventName, money));
     }
   },
 
@@ -64,13 +64,13 @@ const OutputView = {
   printTotalBenefitAmount(amount) {
     const money = numberWithCommas(-amount);
     Console.print(OUTPUT_MESSAGE.totalDiscountAmout);
-    Console.print(`${money}원`);
+    Console.print(OUTPUT_MESSAGE.discountValue(money));
   },
 
   printAfterDiscountAmount(amount) {
     const money = numberWithCommas(amount);
     Console.print(OUTPUT_MESSAGE.totalAmount);
-    Console.print(`${money}원`);
+    Console.print(OUTPUT_MESSAGE.discountValue(money));
   },
 
   printEventBadge(badge) {

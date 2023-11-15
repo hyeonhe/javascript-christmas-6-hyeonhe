@@ -1,20 +1,10 @@
 import { STAR_DAYS, WEEKENDS } from "../constants/date";
+import { NO_EVENT } from "../constants/constants";
 import {
-  CHAMPAGNE_PRICE,
-  CHRISTMAS_EVENT,
-  DISCOUNT_NONE,
-  MENU_DISCOUNT_AMOUNT,
-  MIN_VALUE_APPLY_EVENT,
-  MIN_VALUE_APPLY_GIFT,
-  NO_EVENT,
-  SANTA,
-  SANTA_BADGE_AMOUNT,
-  SPECIAL_AMOUNT,
-  STAR,
-  STAR_BADGE_AMOUNT,
-  TREE,
-  TREE_BADGE_AMOUNT,
-} from "../constants/constants";
+  BADGE_CONSTANTS,
+  CHRISTMAS_EVENT_VALUE,
+  EVENT_CONSTANTS,
+} from "../constants/event";
 
 class Event {
   #date;
@@ -28,50 +18,52 @@ class Event {
   }
 
   existEvents() {
-    if (this.#amount < MIN_VALUE_APPLY_EVENT) {
+    if (this.#amount < EVENT_CONSTANTS.minValueApplyEvent) {
       return false;
     }
     return true;
   }
 
   giftEvent() {
-    if (this.#amount >= MIN_VALUE_APPLY_GIFT) {
-      return CHAMPAGNE_PRICE;
+    if (this.#amount >= EVENT_CONSTANTS.minValueApplyGift) {
+      return EVENT_CONSTANTS.champagnePrice;
     }
-    return DISCOUNT_NONE;
+    return EVENT_CONSTANTS.discountNone;
   }
 
   christmasEvent() {
-    const { startDate, endDate, discount, bonus, offset } = CHRISTMAS_EVENT;
+    const { startDate, endDate, discount, bonus, offset } =
+      CHRISTMAS_EVENT_VALUE;
 
     if (this.#date >= startDate && this.#date <= endDate) {
       return discount + (this.#date - offset) * bonus;
     }
 
-    return DISCOUNT_NONE;
+    return EVENT_CONSTANTS.discountNone;
   }
 
   weekdayEvent() {
     if (!WEEKENDS.includes(this.#date)) {
       const count = this.#menuCounts.mainDish;
-      return count * MENU_DISCOUNT_AMOUNT;
+      return count * EVENT_CONSTANTS.menuDiscountAmount;
     }
-    return DISCOUNT_NONE;
+    return EVENT_CONSTANTS.discountNone;
   }
 
   weekendEvent() {
     if (WEEKENDS.includes(this.#date)) {
       const count = this.#menuCounts.dessert;
-      return count * MENU_DISCOUNT_AMOUNT;
+      return count * EVENT_CONSTANTS.menuDiscountAmount;
     }
-    return DISCOUNT_NONE;
+
+    return EVENT_CONSTANTS.discountNone;
   }
 
   specialEvent() {
     if (STAR_DAYS.includes(this.#date)) {
-      return SPECIAL_AMOUNT;
+      return EVENT_CONSTANTS.specialAmount;
     }
-    return DISCOUNT_NONE;
+    return EVENT_CONSTANTS.discountNone;
   }
 
   totalBenefitAmount() {
@@ -96,10 +88,18 @@ class Event {
   }
 
   eventBadge() {
+    const {
+      santa,
+      santaBadgeAmount,
+      tree,
+      treeBadgeAmount,
+      star,
+      starBadgeAmount,
+    } = BADGE_CONSTANTS;
     const totalBenefitAmount = this.totalBenefitAmount();
-    if (totalBenefitAmount >= SANTA_BADGE_AMOUNT) return SANTA;
-    else if (totalBenefitAmount >= TREE_BADGE_AMOUNT) return TREE;
-    else if (totalBenefitAmount >= STAR_BADGE_AMOUNT) return STAR;
+    if (totalBenefitAmount >= santaBadgeAmount) return santa;
+    else if (totalBenefitAmount >= treeBadgeAmount) return tree;
+    else if (totalBenefitAmount >= starBadgeAmount) return star;
     return NO_EVENT;
   }
 }
